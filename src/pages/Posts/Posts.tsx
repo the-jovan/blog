@@ -13,7 +13,7 @@ function Posts() {
   }
 
   if (isError) {
-    return <div>Errlol</div>;
+    return <div>Posts error</div>;
   }
 
   return (

@@ -1,17 +1,18 @@
-const button = {
+import { defineStyleConfig } from "@chakra-ui/react";
+
+const Button = defineStyleConfig({
   baseStyle: {
     color: "red",
+    background: "orange",
   },
   variants: {
     blue: {
       color: "blue",
-      background: "yellow",
     },
     green: {
       color: "green",
-      background: "pink",
     },
   },
-};
+});
 
-export default button;
+export default Button;

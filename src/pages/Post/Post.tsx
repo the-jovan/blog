@@ -11,18 +11,32 @@ function Post() {
   const { isError, isLoading, data } = results;
 
   if (isError) {
-    return <div>Error lololo</div>;
+    return <div>Query's error</div>;
   }
 
   if (isLoading) {
     return <div>Loading lololo</div>;
   }
 
+  if (data) {
+    console.log("data", data);
+  }
+
   return (
     <div>
       <Link to="/posts">Back</Link>
       <hr />
-      {data.fields.title}
+      <h1>{data.fields.title}</h1>
+      <div>
+        {data.metadata.tags.map((tag: any) => (
+          <div key={tag.sys.id}>{tag.sys.id}</div>
+        ))}
+      </div>
+      <div>
+        {data.fields.description.content.map((item: any, i: number) => (
+          <p key={i}>{item.content[0].value}</p>
+        ))}
+      </div>
     </div>
   );
 }

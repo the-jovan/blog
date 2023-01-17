@@ -4,6 +4,7 @@ function Home() {
   return (
     <div>
       <Link to="/posts">Posts</Link>
+      Ic houm
     </div>
   );
 }
