@@ -2,18 +2,18 @@ import { ReactNode } from "react";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 
-interface ChildrenProps {
-  children: ReactNode | string;
-}
-
 interface LinkProps {
+  children: ReactNode;
   to: string;
-  [key: string]: string | boolean;
+  variant?: string;
+  props?: {
+    [key: string]: string;
+  };
 }
 
-const CustomLink = ({ children, to, ...props }: ChildrenProps & LinkProps) => {
+const CustomLink = ({ children, to, variant, props }: LinkProps) => {
   return (
-    <ChakraLink as={RouterLink} to={to} {...props}>
+    <ChakraLink as={RouterLink} to={to} variant={variant} {...props}>
       {children}
     </ChakraLink>
   );

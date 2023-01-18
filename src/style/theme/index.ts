@@ -5,6 +5,9 @@ import Container from "./container";
 import Link from "./link";
 
 const customTheme = {
+  fonts: {
+    body: `"Vazir", sans-serif`,
+  },
   breakpoints: {
     sm: "48px",
     md: "768px",
@@ -12,10 +15,17 @@ const customTheme = {
   },
   colors: {
     white: "#fffcff",
+    lightgrey: "#c2bec2",
     black: "#170a1c",
     blue: "#39a2ae",
   },
-  styles: {},
+  styles: {
+    global: {
+      body: {
+        background: "#ececec",
+      },
+    },
+  },
   components: {
     Button,
     Container,

@@ -23,4 +23,17 @@ const fetchContentfulThing = async ({ queryKey }: { queryKey: string[] }) => {
   return res.json();
 };
 
-export { fetchContentfulStuff, fetchContentfulThing };
+const fetchImage = async ({ queryKey }: any) => {
+  const id = queryKey[1];
+  const res = await fetch(
+    `https://images.ctfassets.net/mnybxqntz76m/${id}/twitter-card.png`
+  );
+
+  if (!res.ok) {
+    throw new Error("phail");
+  }
+
+  return res.json();
+};
+
+export { fetchContentfulStuff, fetchContentfulThing, fetchImage };

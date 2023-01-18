@@ -1,11 +1,12 @@
+import { Container } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div>
+    <Container>
       <Link to="/posts">Posts</Link>
       Ic houm
-    </div>
+    </Container>
   );
 }
 

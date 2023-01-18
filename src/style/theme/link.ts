@@ -6,12 +6,15 @@ const Link = defineStyleConfig({
     navigation: {
       display: "block",
       padding: "2rem",
-      // background: "blue",
       _hover: {
         background: "blue",
         color: "white",
         textDecoration: "none",
       },
+    },
+    breadcrumb: {
+      textTransform: "capitalize",
+      color: "lightgrey",
     },
   },
 });

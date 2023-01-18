@@ -1,14 +1,34 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchContentfulThing } from "../../api/temp";
-import { Link, useParams } from "react-router-dom";
+import { fetchContentfulStuff, fetchContentfulThing } from "../../api/temp";
+import { Link, useLocation } from "react-router-dom";
 
 function Post() {
-  const { id } = useParams();
+  const location = useLocation();
+  const id = location.state;
+
   const results = useQuery(["post", `${id}`], fetchContentfulThing, {
     staleTime: Infinity,
+    enabled: !!id,
   });
 
-  const { isError, isLoading, data } = results;
+  const allResults = useQuery(["posts"], fetchContentfulStuff, {
+    staleTime: Infinity,
+    enabled: !!!id,
+  });
+
+  let isError, isLoading, data;
+
+  if (!!id) {
+    isError = results.isError;
+    isLoading = results.isLoading;
+    data = results.data;
+  } else {
+    isError = allResults.isError;
+    isLoading = allResults.isLoading;
+    data = allResults?.data?.items.find((i: any) => {
+      return i.fields.slug === location.pathname.split("/").pop();
+    });
+  }
 
   if (isError) {
     return <div>Query's error</div>;
@@ -16,10 +36,6 @@ function Post() {
 
   if (isLoading) {
     return <div>Loading lololo</div>;
-  }
-
-  if (data) {
-    console.log("data", data);
   }
 
   return (

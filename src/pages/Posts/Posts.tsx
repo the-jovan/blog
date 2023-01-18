@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { Fragment } from "react";
 import { fetchContentfulStuff } from "../../api/temp";
 import { useQuery } from "@tanstack/react-query";
+import { Container } from "@chakra-ui/react";
+
+import PostCard from "../../components/features/PostCard";
 
 function Posts() {
   const resp = useQuery(["posts"], fetchContentfulStuff, {
@@ -17,17 +20,21 @@ function Posts() {
   }
 
   return (
-    <div>
-      <Link to="/">Home</Link>
-      <hr />
+    <Container>
       {data.items.map((item: any) => {
         return (
-          <Link key={item.sys.id} to={item.sys.id}>
-            {item.fields.title}
-          </Link>
+          <Fragment key={item.sys.id}>
+            <PostCard
+              createdAt={item.sys.createdAt}
+              id={item.sys.id}
+              slug={item.fields.slug}
+              title={item.fields.title}
+              img=""
+            />
+          </Fragment>
         );
       })}
-    </div>
+    </Container>
   );
 }
 

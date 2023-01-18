@@ -1,4 +1,3 @@
-import Header from "./components/features/Header";
 import Providers from "./config/providers";
 import Router from "./config/router";
 
